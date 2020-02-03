@@ -60,10 +60,7 @@ class BurgerBuilder extends Component{
     }
    
     mostrarOrderHandler = () => {
-        this.setState({purchasable:true})
-        
-        
-
+        this.setState({purchasable:!this.state.purchasable})
     }
     
     render(){
@@ -88,7 +85,7 @@ class BurgerBuilder extends Component{
                 
         return(
             <Auxiliary>
-                <Modal show={this.state.purchasable}>
+                <Modal show={this.state.purchasable} cerrarbackdrop={this.mostrarOrderHandler} >
                     <OrderSummary ingredients={this.state.ingredients}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
