@@ -60,7 +60,16 @@ class BurgerBuilder extends Component{
     }
    
     mostrarOrderHandler = () => {
-        this.setState({purchasable:!this.state.purchasable})
+        this.setState({purchasable: !this.state.purchasable })
+    }
+
+    //mostrarOrderHandler y cerrarOrderHandler funcionan igual, pero al revés
+    cerrarOrderHandler = () => {
+        this.setState({ purchasable: false })
+    }
+
+    continuarOrderHandler = () => {
+        alert('Continuaste!')
     }
     
     render(){
@@ -85,8 +94,11 @@ class BurgerBuilder extends Component{
                 
         return(
             <Auxiliary>
-                <Modal show={this.state.purchasable} cerrarbackdrop={this.mostrarOrderHandler} >
-                    <OrderSummary ingredients={this.state.ingredients}/>
+                <Modal show={this.state.purchasable} cerrarBackDrop={this.cerrarOrderHandler} >
+                    <OrderSummary ingredients={this.state.ingredients}
+                        purchaseCanceled={this.cerrarOrderHandler}
+                        continuarPurchase={this.continuarOrderHandler}
+                        platita={this.state.totalPrice}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls
